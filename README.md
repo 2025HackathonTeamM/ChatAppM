@@ -12,9 +12,12 @@ cd ChatAppM
 ###.envファイルの作成：.envファイルはgitでダウンロードしたものをそのまま使えない性質のものなので、各自.env.exampleをローカルで.envに変更してください
 cp .env.example .env
 
-###開発環境の開発
-#Python 3.11以上推奨
-#必要なパッケージをインストール
-python -m venv venv         # 仮想環境（あれば推奨）
-source venv/bin/activate    # 仮想環境に入る（Mac/Linux）
-pip install -r requirements.txt 　　#このコマンドでFlaskやpython-dotenvなど必要なパッケージがダウンロードされます！
+##Dockerを使ったアプリの起動
+このアプリはDockerを用いて構築・起動します。
+docker compose up --build
+Flaskアプリ：http://localhost:55000 でアクセスできます）
+このプロジェクトは Docker を使って構築されており、依存パッケージ（Flask など）は
+Dockerfile 内で自動的にインストールされます。
+
+そのため、開発者が手動で `pip install` を実行する必要はありません
+#このコマンドでFlaskやpython-dotenvなど必要なパッケージがダウンロードされます！
