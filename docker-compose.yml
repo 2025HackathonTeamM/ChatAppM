@@ -1,6 +1,6 @@
 # docker-composeのバージョンを指定
  version: "3.9"
- 
+
  # db(MySQL),app(Flask)のコンテナを作成
  services:
    db:
@@ -24,10 +24,7 @@
        - MYSQL_DATABASE=chatapp
        - MYSQL_USER=testuser
        - MYSQL_PASSWORD=testuser
-       - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
-       - MYSQL_DATABASE=${DB_DATABASE}
-       - MYSQL_USER=${DB_USER}
-       - MYSQL_PASSWORD=${DB_PASSWORD}
+
      # .envファイルから環境変数を読み込む
      env_file:
        - .env
@@ -43,7 +40,7 @@
        retries: 3
        # ヘルスチェックが失敗しても無視する時間は30秒
        start_period: 30s
- 
+
    app:
      # コンテナ名をFlaskに設定
      container_name: Flask
@@ -71,6 +68,6 @@
      # .envファイルから環境変数を読み込む
      env_file:
        - .env
- 
+
  volumes:
    mysql_data:
