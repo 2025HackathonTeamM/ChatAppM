@@ -1,0 +1,38 @@
+<!-- templates/login.html -->
+<!--declare-->
+<!DOCTYPE html>
+<html lang="en">
+<!--head部分-->
+<head>
+    <meta charset="UTF-8">
+    <!--ブラウザのタブに表示されるタイトル-->
+    <title>Login - OnlyUs</title>
+    <!--Flaskのstaticフォルダのstyle.cssを読みこむ-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!--css containerはwordでいうところの余白の設定をすることで読みやすくすること-->
+    <div class="container">
+        <h1 class="title">OnlyUs</h1>
+        <p class="subtitle">
+            A room just for our words.<br>
+            Say good morning. Say good night.<br>
+            As if we were side by side.
+        </p>
+        
+        <!-- バックエンドにつがなるフォーム -->
+        <!-- 入力があった場合は情報をサーバーに送る -->
+        <form method="POST" action="{{ url_for('login') }}">
+            <!-- ユーザー名を入れる入力欄。usernameが入力されていない場合は要求する -->
+            <input type="text" name="username" placeholder="username" required>
+            <input type="password" name="password" placeholder="password" required>
+            <button type="submit">login</button>
+        </form>
+
+        <p class="bottom-link">
+            New here? <a href="{{ url_for('signup')}}">Sign up.</a>
+        </p>
+    </div>
+
+</body>
+</html>
