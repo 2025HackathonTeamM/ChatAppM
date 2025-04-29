@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up - OnlyUs</title>
+
+    <!-- staticフォルダの中にあるstyle.cssというファイルを読み込む -->
+    <!-- url_forはアプリが勝手にurlを作ってくれる！-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css' )}}>
+   
+</head>
+<body class="signup-page">
+
+    <h1>Join me. I've saved a seat for you.</h1>
+
+    <form method="POST" action="/signup">
+        <input type="text" name="username" placeholder="username" required><br>
+        <input type="password" name="password" placeholder="password" required><br>
+        <input type="password" name="confirm_password" placeholder="confirm password" required><br>
+        <button type="submit">sign up</button>
+    </form>
+
+</body>  
+</html>
