@@ -1,13 +1,76 @@
+from flask import Flask, render_template, request, redirect, url_for, session, flash
 import pymysql
-pymysql.install_as_MySQLdb()
-
-from flask import Flask
+import hashlib
+import uuid
 
 app = Flask(__name__)
+app.secret_key = 'your_secret_key'
+
+# DB接続用の関数（毎回呼び出す）
+def get_db_connection():
+    return pymysql.connect(
+        host='localhost',
+        user='youruser',
+        password='yourpassword',
+        db='chatapp',
+        charset='utf8mb4',
+        cursorclass=pymysql.cursors.DictCursor  # ← 辞書型で返してくれる！
+    )
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['password']
+
+        conn = get_db_connection()
+        with conn.cursor() as cursor:
+            sql = "SELECT * FROM users WHERE email=%s AND password=%s"
+            cursor.execute(sql, (email, password))
+            user = cursor.fetchone()
+
+        conn.close()
+
+        if user:
+            session['username'] = user['user_name']
+            return redirect(url_for('chat'))
+        else:
+            flash("Invalid email or password")
+
+    return render_template('login.html')
+
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        confirm_password = request.form['confirm_password']
+
+        if password != confirm_password:
+            flash('Passwords do not match.')
+            return render_template('signup.html')
+
+        # パスワードをハッシュ化！
+        hashed_password = hashlib.sha256(password.encode('utf-8')).hexdigest()
+
+        # データベースに登録
+        conn = get_db_connection()
+        with conn.cursor() as cursor:
+            user_id = str(uuid.uuid4())
+            sql = "INSERT INTO users (uid, user_name, password) VALUES (%s, %s, %s)"
+            cursor.execute(sql, (user_id, username, hashed_password))
+            conn.commit()
+
+        conn.close()
+
+        flash('Account created! Please log in.')
+        return redirect(url_for('login'))
+
+    return render_template('signup.html')
 
 @app.route('/')
-def hello():
-    return "🎉 Hello from your Docker-powered Flask app!"
+def home():
+    return "Flask is working!"
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=55000)
+    app.run(host='0.0.0.0', port=55000, debug=True)
