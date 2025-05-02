@@ -7,10 +7,6 @@ app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 
 # DB接続用の関数（毎回呼び出す）
-app = Flask(__name__)
-app.secret_key ='your_secret_key'
-
-# DB接続用関数
 def get_db_connection():
     return pymysql.connect(
         host='localhost',
@@ -24,13 +20,13 @@ def get_db_connection():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        email = request.form['email']
+        username = request.form['username']
         password = request.form['password']
 
         conn = get_db_connection()
         with conn.cursor() as cursor:
-            sql = "SELECT * FROM users WHERE email=%s AND password=%s"
-            cursor.execute(sql, (email, password))
+            sql = "SELECT * FROM users WHERE username=%s AND password=%s"
+            cursor.execute(sql, (username, password))
             user = cursor.fetchone()
 
         conn.close()
@@ -77,5 +73,4 @@ def home():
     return "Flask is working!"
 
 if __name__ == '__main__':
-  
     app.run(host='0.0.0.0', port=55000, debug=True)
