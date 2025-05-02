@@ -7,6 +7,10 @@ app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 
 # DB接続用の関数（毎回呼び出す）
+app = Flask(__name__)
+app.secret_key ='your_secret_key'
+
+# DB接続用関数
 def get_db_connection():
     return pymysql.connect(
         host='localhost',
@@ -73,4 +77,5 @@ def home():
     return "Flask is working!"
 
 if __name__ == '__main__':
+  
     app.run(host='0.0.0.0', port=55000, debug=True)
