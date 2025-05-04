@@ -1,0 +1,71 @@
+html {
+    background-image: url("/img/login.png");
+    background-size: cover;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.title {
+    color: #FFFFFF;
+    font-family: "Leckerli One";
+    font-size: 75px;
+    font-weight: 400;
+    margin: 150px 0 100px 0;
+}
+.subtitle {
+    color:#FFFFFF;
+    font-family: "Lekton";
+    font-size: 40px;
+}
+.bottom-link {
+    color:#FFFFFF;
+    font-family: "Lekton";
+    font-size: 40px;
+}
+
+.bottom-link a {
+    text-decoration: none;
+    color:#FFFFFF;
+}
+
+ul li{
+    list-style: none;
+}
+
+input {
+    width: 800px;
+    height: 80px;
+    border-radius: 10px;
+    border: none;
+    font-size: 40px;
+    font-family: "Lekton";
+}
+
+input::placeholder {
+    font-size: 40px;
+    font-family: "Lekton";
+}
+
+.input-txt {
+    margin-bottom: 15px;
+}
+
+.input-pas {
+    margin-bottom: 15px;
+}
+
+.btn {
+    text-align: center;
+    margin-top: 100px
+}
+
+.btn-submit {
+    width: 345px;
+    font-size: 64px;
+    font-family: "Henny Penny";
+    background-color: #F99C85;
+    border: none;
+    border-radius: 20px;
+}
