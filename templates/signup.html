@@ -1,0 +1,38 @@
+<!-- templates/signup.html -->
+<!--declare-->
+<!DOCTYPE html>
+<html lang="ja">
+<!--head部分-->
+<head>
+    <meta charset="UTF-8">
+<!--ブラウザのタブに表示されるタイトル-->
+    <title>Signup - OnlyUs</title>
+    <!--login.css読み込み-->
+    <link rel="stylesheet" href="signup.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Leckerli+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Leckerli+One&family=Lekton:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Henny+Penny&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!--css containerはwordでいうところの余白の設定をすることで読みやすくすること-->
+    <div class="container">
+        <h1 class="title">Join me. I've saved a seat for you.</h1>
+
+        <!-- バックエンドにつがなるフォーム -->
+        <!-- 入力があった場合は情報をサーバーに送る -->
+    <div class="form-content">
+        <form method="POST" action="{{ url_for('login') }}">
+                <!-- ユーザー名を入れる入力欄。usernameが入力されていない場合は要求する -->
+            <div class="input-txt"><input type="text" name="username" placeholder="username" required></div>
+            <div class="input-pas"><input type="password" name="password" placeholder="password" required></div>
+            <div class="input-confirm_password"><input type="password" name="confirm_password" placeholder="confirm_password" required></div>
+            <div class="btn"><button type="submit" class="btn-submit">sign up</button></div>
+        </form>
+    </div>
+
+    </div>
+
+</body>
+</html>
