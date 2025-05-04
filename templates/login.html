@@ -1,14 +1,19 @@
 <!-- templates/login.html -->
 <!--declare-->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <!--head部分-->
 <head>
     <meta charset="UTF-8">
     <!--ブラウザのタブに表示されるタイトル-->
     <title>Login - OnlyUs</title>
-    <!--Flaskのstaticフォルダのstyle.cssを読みこむ-->
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!--style.css読み込み-->
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Leckerli+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Leckerli+One&family=Lekton:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Henny+Penny&display=swap" rel="stylesheet">
 </head>
 <body>
     <!--css containerはwordでいうところの余白の設定をすることで読みやすくすること-->
@@ -19,15 +24,17 @@
             Say good morning. Say good night.<br>
             As if we were side by side.
         </p>
-        
+
         <!-- バックエンドにつがなるフォーム -->
         <!-- 入力があった場合は情報をサーバーに送る -->
+    <div class="form-content">
         <form method="POST" action="{{ url_for('login') }}">
-            <!-- ユーザー名を入れる入力欄。usernameが入力されていない場合は要求する -->
-            <input type="text" name="username" placeholder="username" required>
-            <input type="password" name="password" placeholder="password" required>
-            <button type="submit">login</button>
+                <!-- ユーザー名を入れる入力欄。usernameが入力されていない場合は要求する -->
+            <div class="input-txt"><input type="text" name="username" placeholder="username" required></div>
+            <div class="input-pas"><input type="password" name="password" placeholder="password" required></div>
+            <div class="btn"><button type="submit" class="btn-submit">login</button></div>
         </form>
+    </div>
 
         <p class="bottom-link">
             New here? <a href="{{ url_for('signup')}}">Sign up.</a>
