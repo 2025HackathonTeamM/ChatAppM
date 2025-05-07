@@ -1,21 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 
 <head>
   <meta charset="UTF-8" />
-  <title>OnlyUs - Messages</title>
-  <link rel="stylesheet" href="/static/style.css" />
+  <title>Message - OnlyUs</title>
+  <link rel="stylesheet" href="message.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Leckerli+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Leckerli+One&family=Lekton:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Henny+Penny&display=swap" rel="stylesheet">
 </head>
 
 <body>
   <div class="chat-container">
-    <h2>Welcome back to your private little world!
-      <br>Whispers, laughter, and everything in between</h2>
-    <div id="messages"></div>
+    <div class="title">
+      <h1>Welcome back to your private little world!<br>
+        Whispers, laughter, and everything in between
+      </h1>
+    </div>
+      <!--メッセージを表示-->
+    <div id="message-area"></div>
 
-    <div class="input-area">
-      <textarea id="message-input" placeholder="Type your message..."></textarea>
-      <button id="send-btn">Send</button>
+    <!--メッセージ入力フォーム-->
+    <div class="input-area-wrapper">
+      <form class="input-area">
+        <textarea id="message-input"></textarea>
+        <button id="send-btn">send</button>
+      </form>
     </div>
   </div>
 
