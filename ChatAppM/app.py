@@ -16,7 +16,9 @@ def get_db_connection():
         charset='utf8mb4',
         cursorclass=pymysql.cursors.DictCursor  # ← 辞書型で返してくれる！
     )
-
+@app.route('/')
+def home():
+    return "Flask is working!"
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -68,9 +70,7 @@ def signup():
 
     return render_template('signup.html')
 
-@app.route('/')
-def home():
-    return "Flask is working!"
+
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=55000, debug=True)
+    app.run(host='0.0.0.0', debug=True)
