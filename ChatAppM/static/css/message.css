@@ -1,5 +1,5 @@
 html {
-    background-image: url("/img/chatroom.png");
+    background-image: url("../img/chatroom.png");
     background-size: cover;
 }
 .chat-container {
