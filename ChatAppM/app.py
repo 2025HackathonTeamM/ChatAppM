@@ -23,22 +23,24 @@ def get_db_connection():
 @app.route('/')
 def home():
     return "Flask is working!"
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         user_name = request.form['username']
         password = request.form['password']
+        hashed_password = hashlib.sha256(password.encode('utf-8')).hexdigest()
 
         conn = get_db_connection()
         with conn.cursor() as cursor:
             sql = "SELECT * FROM users WHERE user_name=%s AND password=%s"
-            cursor.execute(sql, (user_name, password))
+            cursor.execute(sql, (user_name, hashed_password))
             user = cursor.fetchone()
-
         conn.close()
 
         if user:
             session['username'] = user['user_name']
+            session['uid'] = user['uid']
             return redirect(url_for('chat'))
         else:
             flash("Invalid email or password")
@@ -66,7 +68,6 @@ def signup():
             sql = "INSERT INTO users (uid, user_name, password) VALUES (%s, %s, %s)"
             cursor.execute(sql, (user_id, user_name, hashed_password))
             conn.commit()
-
         conn.close()
 
         flash('Account created! Please log in.')
@@ -74,13 +75,41 @@ def signup():
 
     return render_template('signup.html')
 
-@app.route('/chat')
+
+@app.route('/chat', methods=['GET', 'POST'])
 def chat():
-    if 'user_name' in session:
-        return render_template('messages.html', user_name=session['user_name'])
-    else:
+    if 'username' not in session:
         flash("Please log in first.")
         return redirect(url_for('login'))
+    
+    if request.method == 'POST':
+        message = request.form['message']
+        if message.strip():
+            conn = get_db_connection()
+            with conn.cursor() as cursor:
+                sql = "INSERT INTO messages (message, user_id) VALUES (%s, %s)"
+                cursor.execute(sql, (message, session['uid']))
+                conn.commit()
+            conn.close()
+            return redirect(url_for('chat'))
+
+    conn = get_db_connection()
+    with conn.cursor() as cursor:
+        cursor.execute("""
+            SELECT m.message, u.user_name
+            FROM messages m
+            JOIN users u ON m.user_id = u.uid
+            ORDER BY m.created_at ASC
+        """)
+        messages = cursor.fetchall()
+    conn.close()
+
+    return render_template('messages.html', messages=messages, user_name=session['username'])
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('login'))
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True)
+    app.run(host="0.0.0.0", debug=True)

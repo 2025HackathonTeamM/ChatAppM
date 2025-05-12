@@ -16,12 +16,11 @@
   <div class="chat-container">
     <div class="title">
       <h1>Welcome back to your private little world!<br>
-        Whispers, laughter, and everything in between
-      </h1>
+        Whispers, laughter, and everything in between</h1>
     </div>
 
     <div id="message-area">
-    　{% for msg in messages %}
+      {% for msg in messages %}
         <div class="message">
           <strong>{{ msg.user_name }}:</strong> {{ msg.message }}
         </div>
@@ -33,7 +32,7 @@
         <textarea name="message" id="message-input"></textarea>
         <button type="submit">send</button>
       </form>
-    </div>
+   </div>
   </body>
 
   </html> 
