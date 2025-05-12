@@ -41,6 +41,7 @@ def login():
         if user:
             session['username'] = user['user_name']
             session['uid'] = user['uid']
+            print("ログイン成功:", session)
             return redirect(url_for('chat'))
         else:
             flash("Invalid email or password")
@@ -78,6 +79,7 @@ def signup():
 
 @app.route('/chat', methods=['GET', 'POST'])
 def chat():
+    print("セッション情報:", session)
     if 'username' not in session:
         flash("Please log in first.")
         return redirect(url_for('login'))
