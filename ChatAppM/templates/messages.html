@@ -19,6 +19,10 @@
         Whispers, laughter, and everything in between</h1>
     </div>
 
+    <form action="{{ url_for('logout') }}" method="GET" style="text-align: right; margin: 10px;">
+      <button type="submit" style="font-size: 16px;">Logout</button>
+    </form>
+
     <div id="message-area">
       {% for msg in messages %}
         <div class="message">

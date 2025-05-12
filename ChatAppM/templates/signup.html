@@ -23,7 +23,7 @@
         <!-- バックエンドにつがなるフォーム -->
         <!-- 入力があった場合は情報をサーバーに送る -->
     <div class="form-content">
-        <form method="POST" action="{{ url_for('login') }}">
+        <form method="POST" action="{{ url_for('signup') }}">
                 <!-- ユーザー名を入れる入力欄。usernameが入力されていない場合は要求する -->
             <div class="input-txt"><input type="text" name="username" placeholder="username" required></div>
             <div class="input-pas"><input type="password" name="password" placeholder="password" required></div>
