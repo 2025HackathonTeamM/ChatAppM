@@ -5,9 +5,15 @@ html {
 .chat-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
-.title h1{
+.header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 20px 0;
+}
+.header h1 {
     color: #FFFFFF;
     font-family: "Leckerli One";
     font-size: 48px;
@@ -15,12 +21,53 @@ html {
     margin-top: 30px;
     margin-bottom: 10px;
 }
+.header form button {
+    font-size: 16px;
+    padding: 8px 16px;
+    border: none;
+    background-color: #d9d9d9;
+    border-radius: 10px;
+    cursor: pointer;
+}
+#message-area {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 10px;
+    height: 60vh;
+    overflow-y: auto;
+}
+.message {
+    margin: 5px 0;
+    max-width: 60%;
+    padding: 10px;
+    border-radius: 15px;
+    font-size: 16px;
+    word-wrap: break-word;
+}
+.my-message {
+    background-color:#d0f0fd;
+    padding: 10px 15px;
+    border-radius: 20px;
+    max-width: 60%;
+    align-self: flex-end;
+    text-align: right;
+}
+.other-message {
+    background-color: #e6ddf8;
+    padding: 10px 15px;
+    border-radius: 20px;
+    max-width: 60%;
+    align-self: flex-start;
+    text-align: left;
+}
 .input-area-wrapper {
     position: fixed;
     bottom: 0;
     width: calc(100vw - 50px);
     height: 15vh;
     background-color: var(--snow);
+    background-color: #f9f9f9;
     background-size: contain;
     display: flex;
     align-items: center;
@@ -35,6 +82,7 @@ html {
 }
 .input-area textarea{
     padding: 10px;
+    padding-right: 50px;
     width: 100%;
     border-radius: 15px;
     font-size: medium;
