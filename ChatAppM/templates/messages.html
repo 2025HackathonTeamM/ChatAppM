@@ -14,30 +14,36 @@
 
 <body>
   <div class="chat-container">
-    <div class="title">
+    <div class="header">
       <h1>Welcome back to your private little world!<br>
         Whispers, laughter, and everything in between</h1>
-    </div>
 
-    <form action="{{ url_for('logout') }}" method="GET" style="text-align: right; margin: 10px;">
-      <button type="submit" style="font-size: 16px;">Logout</button>
-    </form>
+        <form action="{{ url_for('logout') }}" method="GET" style="text-align: right; margin: 10px;">
+          <button type="submit" style="font-size: 16px;">Logout</button>
+        </form>
+      </div>
 
     <div id="message-area">
       {% for msg in messages %}
-        <div class="message">
+        {% if msg.user_id == uid %}
+        <div class="message my-message">
           <strong>{{ msg.user_name }}:</strong> {{ msg.message }}
         </div>
+      {% else %}
+        <div class="message other-message">
+          <strong>{{ msg.user_name }}</strong>{{ msg.message }}
+        </div>
+      {% endif %}
       {% endfor %}
     </div>
-  
+
       <!-- メッセージ送信フォーム -->
       <form class="input-area" method="POST" action="/chat">
         <textarea name="message" id="message-input"></textarea>
         <button type="submit">send</button>
       </form>
-   </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/scroll-message.js') }}"></script>
   </body>
 
-  </html> 
-
+  </html>
