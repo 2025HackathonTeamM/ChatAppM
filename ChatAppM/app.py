@@ -79,11 +79,12 @@ def signup():
 
 @app.route('/chat', methods=['GET', 'POST'])
 def chat():
+    uid = session.get('uid')
     print("セッション情報:", session)
     if 'username' not in session:
         flash("Please log in first.")
         return redirect(url_for('login'))
-    
+
     if request.method == 'POST':
         message = request.form['message']
         if message.strip():
@@ -106,7 +107,7 @@ def chat():
         messages = cursor.fetchall()
     conn.close()
 
-    return render_template('messages.html', messages=messages, user_name=session['username'])
+    return render_template('messages.html', messages=messages, user_name=session['username'], uid=uid)
 
 @app.route('/logout')
 def logout():
