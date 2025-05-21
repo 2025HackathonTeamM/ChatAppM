@@ -27,10 +27,14 @@
       {% for msg in messages %}
         <div class="message">
           <strong>{{ msg.user_name }}:</strong> {{ msg.message }}
+
+          <form action="/delete/{{ msg.id }}" method="POST" style="display:inline;">
+            <button type="submit">削除</button>
+        　</form>
         </div>
       {% endfor %}
     </div>
-  
+
       <!-- メッセージ送信フォーム -->
       <form class="input-area" method="POST" action="/chat">
         <textarea name="message" id="message-input"></textarea>

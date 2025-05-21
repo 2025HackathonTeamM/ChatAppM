@@ -98,7 +98,7 @@ def chat():
     conn = get_db_connection()
     with conn.cursor() as cursor:
         cursor.execute("""
-            SELECT m.message, u.user_name
+            SELECT m.id, m.message, u.user_name
             FROM messages m
             JOIN users u ON m.user_id = u.uid
             ORDER BY m.created_at ASC
@@ -112,6 +112,23 @@ def chat():
 def logout():
     session.clear()
     return redirect(url_for('login'))
+
+@app.route('/delete/<int:message_id>', methods=['POST'])
+def delete_message(message_id):
+    uid = session.get('uid')
+
+    if uid is None:
+        return redirect(url_for('login'))
+    
+    conn = get_db_connection()
+    with conn.cursor() as cursor:
+        sql = "DELETE FROM messages WHERE id = %s AND user_id = %s"
+        cursor.execute(sql, (message_id, uid))
+        conn.commit()
+    conn.close()
+
+    return redirect(url_for('chat'))
+
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", debug=True)
