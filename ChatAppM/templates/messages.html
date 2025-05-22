@@ -28,6 +28,10 @@
         {% if msg.user_id == uid %}
         <div class="message my-message">
           <strong>{{ msg.user_name }}:</strong> {{ msg.message }}
+
+          <form action="/delete/{{ msg.id }}" method="POST" style="display:inline;">
+            <button type="submit">削除</button>
+        　</form>
         </div>
       {% else %}
         <div class="message other-message">
