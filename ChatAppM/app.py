@@ -99,7 +99,7 @@ def chat():
     conn = get_db_connection()
     with conn.cursor() as cursor:
         cursor.execute("""
-            SELECT m.id, m.message, u.user_name
+            SELECT m.id, m.message, m.user_id, u.user_name
             FROM messages m
             JOIN users u ON m.user_id = u.uid
             ORDER BY m.created_at ASC
