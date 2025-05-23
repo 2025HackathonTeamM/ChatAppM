@@ -1,5 +1,5 @@
 html {
-    background-image: url("../img/login.png");
+    background-image: url("../img/signup.png");
     background-size: cover;
 }
 .container {
@@ -35,16 +35,16 @@ ul li{
 }
 
 input {
-    width: 800px;
-    height: 80px;
+    width: 600px;
+    height: 60px;
     border-radius: 10px;
     border: none;
-    font-size: 40px;
+    font-size: 32px;
     font-family: "Lekton";
 }
 
 input::placeholder {
-    font-size: 40px;
+    font-size: 32px;
     font-family: "Lekton";
 }
 
@@ -58,12 +58,13 @@ input::placeholder {
 
 .btn {
     text-align: center;
-    margin-top: 100px
+    margin-top: 60px;
+    margin-bottom: 80px;
 }
 
 .btn-submit {
-    width: 345px;
-    font-size: 64px;
+    width: 250px;
+    font-size: 40px;
     font-family: "Henny Penny";
     background-color: #F99C85;
     border: none;

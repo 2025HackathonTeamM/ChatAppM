@@ -1,6 +1,6 @@
 html {
-    background-image: url("../img/chatroom.png");
-    background-size: cover;
+    background-image: url("../img/chat.png");
+    background-size: contain;
 }
 .chat-container {
     display: flex;
