@@ -17,6 +17,7 @@ html, body {
     align-items: center;
     text-align: center;
     margin: 20px 0;
+    position: relative;
 }
 .header h1 {
     color: #FFFFFF;
@@ -26,14 +27,17 @@ html, body {
     margin-top: 30px;
     margin-bottom: 10px;
 }
-.header form button {
+.logout-button {
+    position: absolute;
+    top: 20px;
+    right: 30px;
     font-size: 16px;
     padding: 8px 16px;
     border: none;
     background-color: #d9d9d9;
     border-radius: 10px;
     cursor: pointer;
-}
+  }
 #message-area {
     display: flex;
     flex-direction: column;

@@ -18,9 +18,6 @@
       <h1>Welcome back to your private little world!<br>
         Whispers, laughter, and everything in between</h1>
 
-        <form action="{{ url_for('logout') }}" method="GET" style="text-align: right; margin: 10px;">
-          <button type="submit" style="font-size: 16px;">Logout</button>
-        </form>
       </div>
 
     <div id="message-area">
@@ -53,6 +50,11 @@
         <textarea name="message" id="message-input"></textarea>
         <button type="submit">send</button>
       </form>
+
+      <form action="{{ url_for('logout') }}" method="GET">
+        <button type="submit" class="logout-button">Logout</button>
+      </form>
+
     </div>
     <script src="{{ url_for('static', filename='js/scroll-message.js') }}"></script>
     
