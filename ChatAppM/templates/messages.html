@@ -30,15 +30,12 @@
               🗑️
             </button>
           </form>
-        
+
         </div>
       {% else %}
         <div class="message other-message">
           <strong>{{ msg.user_name }}</strong>{{ msg.message }}
           <form action="{{ url_for('delete_message', message_id=msg.id) }}" method="POST" style="display:inline;">
-  <button type="submit" class="delete-btn">
-    🗑️
-  </button>
 </form>
         </div>
       {% endif %}
@@ -57,7 +54,7 @@
 
     </div>
     <script src="{{ url_for('static', filename='js/scroll-message.js') }}"></script>
-    
+
   </body>
 
   </html>
